@@ -3,22 +3,31 @@ import { useEffect, useState } from 'react';
 import GameCard from './GameCard';
 
 const Catalog = () => {
-    let [games, setGames] = useState([]);
+    const [games, setGames] = useState([]);
+    const [loading, setLoading] = useState(false);
     useEffect(() => {
-        fetch('http://localhost:3030/data/games?sortBy=_createdOn%20desc')
-            .then(res => res.json())
-            .then(result => {
-                setGames(result);
-            })
+        setLoading(true);
+        setTimeout(() => {
+            fetch('http://localhost:3030/data/games?sortBy=_createdOn%20desc')
+                .then(res => res.json())
+                .then(result => {
+                    setGames(result);
+                    setLoading(false);
+                })
+        }, 1000)
     }, [])
 
     return (
         <section id="catalog-page">
             <h1>All Games</h1>
+            {loading
+                ? <h3 className="no-articles">Loading...</h3>
+                : games.length > 0
+                    ? games.map(x => <GameCard key={x._id} game={x} />)
+                    : <h3 className="no-articles">No articles yet</h3>
+            }
 
-            {games.map(x => <GameCard game={x} />)}
 
-            <h3 className="no-articles">No articles yet</h3>
         </section>
     );
 }

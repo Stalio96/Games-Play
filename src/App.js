@@ -5,9 +5,10 @@ import WelcomeWorld from './components/WelcomeWorld';
 import Login from './components/Login';
 import Register from './components/Register';
 import GameDetails from './components/GameDetails';
-import Catalog from './components/Catalog';
+import Catalog from './components/GameCatalog/Catalog';
 import CreateGame from './components/CreateGame';
 import EditGame from './components/EditGame';
+import ErrorPage from './components/ErrorPage';
 
 function App() {
   const [page, setPage] = useState('/home');
@@ -29,7 +30,7 @@ function App() {
       <Header navigationChangeHandler={navigationChangeHandler} />
 
       <main id="main-content">
-        { routes[page] || <h2>No Page Found!!!</h2> }
+        { routes[page] || <ErrorPage>Some Aditional Info</ErrorPage> }
       </main>
 
     </div>

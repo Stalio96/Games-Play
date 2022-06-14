@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Route } from 'react-router-dom';
 
 import Header from './components/Header';
 import WelcomeWorld from './components/WelcomeWorld';
@@ -40,7 +41,12 @@ function App() {
       <Header navigationChangeHandler={navigationChangeHandler} />
 
       <main id="main-content">
-        { router(page) || <ErrorPage>Some Aditional Info</ErrorPage> }
+        {/* { router(page) || <ErrorPage>Some Aditional Info</ErrorPage> } */}
+        <Route path="/" exact component={WelcomeWorld} />
+        <Route path="/games" component={Catalog} />
+        <Route path="/login" component={Login} />
+        <Route path="/register" component={Register} />
+        <Route path="/create" component={CreateGame} />
       </main>
 
     </div>

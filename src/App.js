@@ -49,6 +49,7 @@ function App() {
           <Route path="/register" component={Register} />
           <Route path="/create" component={CreateGame} />
           <Route path="/games/:gameId" component={GameDetails} />
+          <Route component={ErrorPage} />
         </Switch>
       </main>
 
